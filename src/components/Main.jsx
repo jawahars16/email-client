@@ -9,7 +9,7 @@ export default class Main extends Component {
 	}
 
 	render() {
-		if (this.props.error) {
+		if (this.props.error || this.props.user == null) {
 			return <Error />;
 		}
 
@@ -17,6 +17,13 @@ export default class Main extends Component {
 			return <Loading />;
 		}
 
-		return <div>Logged in...</div>;
+		return (
+			<div>
+				<img src={this.props.user.image} />
+				<br />
+				Logged in as {this.props.user.name}
+				<br /> {this.props.user.email}
+			</div>
+		);
 	}
 }

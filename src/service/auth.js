@@ -11,12 +11,12 @@ function initClient(resolve, reject) {
 			})
 			.then(() => {
 				if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
-					resolve(window.gapi.auth2.getAuthInstance().currentUser.Ab);
+					resolve(extractUser());
 				} else {
 					window.gapi.auth2
 						.getAuthInstance()
 						.signIn()
-						.then(response => resolve(response))
+						.then(() => resolve(extractUser()))
 						.catch(error => reject(error));
 				}
 			});
@@ -25,4 +25,13 @@ function initClient(resolve, reject) {
 
 export const authenticate = () => {
 	return new Promise(initClient);
+};
+
+const extractUser = () => {
+	var response = window.gapi.auth2.getAuthInstance().currentUser.Ab;
+	return {
+		name: response.w3.ig,
+		email: response.w3.U3,
+		image: response.w3.Paa
+	};
 };

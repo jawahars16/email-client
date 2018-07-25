@@ -21,7 +21,9 @@ export const initAuthentication = () => {
 	return dispatch => {
 		dispatch(authenticationInProgress);
 		return authenticate()
-			.then(response => dispatch(authenticationSuccess(response)))
+			.then(response => {
+				dispatch(authenticationSuccess(response));
+			})
 			.catch(() => dispatch(authenticationFailed));
 	};
 };
