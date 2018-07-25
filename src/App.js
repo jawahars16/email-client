@@ -1,46 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import config from './config';
+import React from 'react';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reducers from './reducers';
+import thunk from 'redux-thunk';
+import Main from './containers/Main';
+import { Provider } from 'react-redux';
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-		this.handleAuthClick = this.handleAuthClick.bind(this);
-	}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+	reducers,
+	/* preloadedState, */ composeEnhancers(applyMiddleware(thunk))
+);
 
-	handleAuthClick() {
-		window.gapi.load('auth2', () => {
-			if (!window.gapi.auth2.getAuthInstance()) {
-				window.gapi.auth2
-					.init({
-						apiKey: config.apiKey,
-						discoveryDocs: config.discoveryDocs,
-						clientId: config.clientID,
-						scope: config.scopes
-					})
-					.then(
-						res => console.log(res),
-						err => console.log(`Error : ${JSON.stringify(err)}`)
-					);
-			}
-		});
-	}
-
-	render() {
-		return (
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
-				<button onClick={this.handleAuthClick}>Authorize</button>
-			</div>
-		);
-	}
-}
+const App = () => (
+	<div>
+		<Provider store={store}>
+			<Main />
+		</Provider>
+	</div>
+);
 
 export default App;
