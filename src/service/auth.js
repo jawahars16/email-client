@@ -1,6 +1,6 @@
 import config from '../common/config';
 
-function initClient(resolve, reject) {
+const initClient = (resolve, reject) => {
 	window.gapi.load('client:auth2', () => {
 		window.gapi.client
 			.init({

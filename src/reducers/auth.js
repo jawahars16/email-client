@@ -5,7 +5,7 @@ import {
 } from '../actions/auth';
 
 const initialState = {
-	loading: false,
+	loading: true,
 	user: null,
 	error: false
 };

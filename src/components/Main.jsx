@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Labels from '../containers/Labels';
 
 const Loading = () => <div>Loading...</div>;
 const Error = () => <div>Error</div>;
@@ -9,7 +10,7 @@ export default class Main extends Component {
 	}
 
 	render() {
-		if (this.props.error || this.props.user == null) {
+		if (this.props.error) {
 			return <Error />;
 		}
 
@@ -19,10 +20,11 @@ export default class Main extends Component {
 
 		return (
 			<div>
-				<img src={this.props.user.image} />
+				<img src={this.props.user.image} alt={this.props.user.name} />
 				<br />
 				Logged in as {this.props.user.name}
 				<br /> {this.props.user.email}
+				<Labels />
 			</div>
 		);
 	}

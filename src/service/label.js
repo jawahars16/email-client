@@ -4,7 +4,12 @@ export const getLabels = () => {
 			.list({
 				userId: 'me'
 			})
-			.then(response => resolve(response.result.labels))
+			.then(response => {
+				const result = response.result.labels.filter(
+					label => label.labelListVisibility !== 'labelHide'
+				);
+				resolve(result);
+			})
 			.catch(error => reject(error));
 	});
 };
