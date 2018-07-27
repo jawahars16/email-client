@@ -3,7 +3,7 @@ import Labels from '../containers/Labels';
 import { Layout } from 'antd';
 import Header from './Header';
 
-const { Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 const Loading = () => <div>Loading...</div>;
 const Error = () => <div>Error</div>;
@@ -33,7 +33,6 @@ export default class Main extends Component {
 						<Content>Content</Content>
 					</Layout>
 				</Layout>
-				<Footer>Footer</Footer>
 			</Layout>
 		);
 	}

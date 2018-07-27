@@ -3,7 +3,7 @@ import {
 	LABELS_INPROGRESS,
 	LABELS_SUCCESS,
 	LABELS_FAILED
-} from '../../actions/labels';
+} from '../../actions/label';
 
 describe('Label reducer', () => {
 	const initialState = {

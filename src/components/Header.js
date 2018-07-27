@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Avatar } from 'antd';
+import { Layout, Row, Col } from 'antd';
 
 const Header = props => {
 	return (
@@ -9,7 +9,6 @@ const Header = props => {
 				<Col span={6}>
 					<Row style={{ float: 'right' }}>
 						{props.user.name}
-						<Avatar icon="user" src={props.user.image} />
 					</Row>
 				</Col>
 			</Row>

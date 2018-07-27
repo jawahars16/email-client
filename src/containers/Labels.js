@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Labels from '../components/Labels';
-import { fetchLabels } from '../actions/labels';
+import { fetchLabels } from '../actions/label';
 
 const mapStateToProps = state => {
 	return { ...state.labels };

@@ -21,6 +21,6 @@ export default class Labels extends Component {
 		const labelItems = this.props.data.map(label => (
 			<Menu.Item key={label.id}>{label.name}</Menu.Item>
 		));
-		return <Menu>{labelItems}</Menu>;
+		return <Menu style={{ height: '100vh' }}>{labelItems}</Menu>;
 	}
 }

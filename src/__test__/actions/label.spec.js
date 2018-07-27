@@ -5,9 +5,9 @@ import {
 	LABELS_SUCCESS,
 	LABELS_FAILED,
     fetchLabels
-} from '../../actions/labels';
+} from '../../actions/label';
 
-describe('Auth action', () => {
+describe('Label action', () => {
 	it('Should raise in progress and success actions', async () => {
 		const dispatch = jest.fn();
 		label.getLabels = jest
