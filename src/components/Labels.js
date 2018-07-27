@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Menu } from 'antd';
 
 const Loading = () => <div>Loading...</div>;
 const Error = () => <div>Error</div>;
@@ -18,8 +19,8 @@ export default class Labels extends Component {
 		}
 
 		const labelItems = this.props.data.map(label => (
-			<div key={label.id}>{label.name}</div>
+			<Menu.Item key={label.id}>{label.name}</Menu.Item>
 		));
-		return <div>{labelItems}</div>;
+		return <Menu>{labelItems}</Menu>;
 	}
 }

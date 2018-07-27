@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Labels from '../containers/Labels';
+import { Layout } from 'antd';
+import Header from './Header';
+
+const { Footer, Sider, Content } = Layout;
 
 const Loading = () => <div>Loading...</div>;
 const Error = () => <div>Error</div>;
@@ -19,13 +23,18 @@ export default class Main extends Component {
 		}
 
 		return (
-			<div>
-				<img src={this.props.user.image} alt={this.props.user.name} />
-				<br />
-				Logged in as {this.props.user.name}
-				<br /> {this.props.user.email}
-				<Labels />
-			</div>
+			<Layout style={{ height: '100vh' }}>
+				<Header user={this.props.user} />
+				<Layout>
+					<Sider>
+						<Labels />
+					</Sider>
+					<Layout>
+						<Content>Content</Content>
+					</Layout>
+				</Layout>
+				<Footer>Footer</Footer>
+			</Layout>
 		);
 	}
 }
