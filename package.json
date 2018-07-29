@@ -2,6 +2,7 @@
 	"name": "email-client",
 	"version": "0.1.0",
 	"private": true,
+	"main": "./public/electron.js",
 	"dependencies": {
 		"antd": "^3.7.2",
 		"react": "^16.4.1",
@@ -16,6 +17,10 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"coverage": "react-scripts test --env=jsdom --coverage",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"electron": "electron ."
+	},
+	"devDependencies": {
+		"electron": "^2.0.5"
 	}
 }
