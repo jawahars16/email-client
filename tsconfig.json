@@ -1,0 +1,16 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2015",
+		"noImplicitAny": false,
+		"sourceMap": false,
+		"outDir": "public/",
+		"watch": true
+	},
+	"lib": ["ES5", "ES2015", "DOM", "ScriptHost"],
+	"exclude": ["node_modules", "typings"],
+	"include": [
+		"src/electron/*"
+	]
+}

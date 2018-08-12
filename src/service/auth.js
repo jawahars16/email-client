@@ -28,8 +28,8 @@ export const authenticate = () => {
 };
 
 const extractUser = () => {
-	var response = window.gapi.auth2.getAuthInstance().currentUser.Ab;
-	return {
+    const response = window.gapi.auth2.getAuthInstance().currentUser.Ab;
+    return {
 		name: response.w3.ig,
 		email: response.w3.U3,
 		image: response.w3.Paa

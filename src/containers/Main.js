@@ -1,9 +1,10 @@
 import { initAuthentication } from '../actions/auth';
+import { initialize } from '../actions/setup';
 import { connect } from 'react-redux';
 import Main from '../components/Main';
 
 const mapStateToProps = state => {
-	return { ...state.auth };
+	return { auth: state.auth, setup: state.setup };
 };
 
 const mapDispatchToProps = dispatch => ({

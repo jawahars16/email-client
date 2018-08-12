@@ -1,4 +1,5 @@
 import { authenticate } from '../service/auth';
+import { initialize } from './setup';
 
 export const AUTHENTICATION_INPROGRESS = 'AUTHENTICATION_INPROGRESS';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
@@ -23,6 +24,7 @@ export const initAuthentication = () => {
 		return authenticate()
 			.then(response => {
 				dispatch(authenticationSuccess(response));
+				dispatch(initialize());
 			})
 			.catch(() => dispatch(authenticationFailed));
 	};
