@@ -1,14 +1,19 @@
 import MainService from './MainService';
 import context from './DataContext';
 import MainController from './MainController';
+import DataContext from './DataContext';
 const bodyParser = require('body-parser');
 
  export default class App {
 
     port: Number;
+    databasePath: string;
 
-     constructor(port: Number) {
+     constructor(port: Number, databasePath: string) {
         this.port = port;
+        this.databasePath = databasePath;
+
+        console.log(this.databasePath);
     }
 
      public initiaize() {
@@ -16,14 +21,28 @@ const bodyParser = require('body-parser');
             let express = require('express');
 
             let app = express();
+
             app.use(bodyParser.json());
             app.use(bodyParser.raw({ type: () => true }));
-            
-            let mainService = new MainService(context.labels);
-            let controller = new MainController(mainService);
 
-            app.post('/labels/reset', controller.ResetLabels);
-            app.get('/labels', (req, res: Response) => console.log('test'));
+            app.use((req, res, next) => {
+                console.log(`${req.url} - ${req.method} - ${JSON.stringify(req.body)}`);
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                next();
+              });
+            
+            const context = new DataContext(this.databasePath);
+            const mainService = new MainService(context);
+
+            app.post('/labels', async (req, res) => {
+                const result = await mainService.ResetLabels(req.body);
+                res.send(result);
+            });
+            app.post('/threads', async (req, res) => {
+                const result = await mainService.AddThreads(req.body);
+                res.send(result);
+            });
 
             let server = app.listen(this.port, () => {
                 let host = server.address().address;

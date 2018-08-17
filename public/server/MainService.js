@@ -8,15 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Repository_1 = require("./Repository");
 class MainService {
-    constructor(repository) {
-        this.repository = repository;
+    constructor(context) {
+        this.labelRepository = new Repository_1.default(context.labels);
+        this.threadRepository = new Repository_1.default(context.threads);
     }
     ResetLabels(labels) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(labels);
-            yield this.repository.removeAll();
-            yield this.repository.addMultiple(labels);
+            const labelsRemoved = yield this.labelRepository.removeAll();
+            const result = yield this.labelRepository.addMultiple(labels);
+            return { labelsRemoved, result };
+        });
+    }
+    AddThreads(threads) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.threadRepository.addMultiple(threads);
         });
     }
 }

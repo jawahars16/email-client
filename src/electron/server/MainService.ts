@@ -1,17 +1,23 @@
 import Repository from "./Repository";
-import Label from "./Label";
+import { Label, Thread } from "./Model";
 
 export default class MainService {
 
-    repository: Repository<Label>;
+    labelRepository: Repository<Label>;
+    threadRepository: Repository<Thread>;
 
-    constructor(repository){
-        this.repository = repository;
+    constructor(context){
+        this.labelRepository = new Repository(context.labels);
+        this.threadRepository = new Repository(context.threads);
     }
 
 	public async ResetLabels(labels: Label[]) {
-        console.log(labels);
-        await this.repository.removeAll();
-        await this.repository.addMultiple(labels);
+        const labelsRemoved = await this.labelRepository.removeAll();
+        const result = await this.labelRepository.addMultiple(labels);
+        return { labelsRemoved, result };
+    }
+
+    public async AddThreads(threads: Thread[]) {
+        return await this.threadRepository.addMultiple(threads);
     }
 }

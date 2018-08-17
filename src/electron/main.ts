@@ -7,9 +7,9 @@ async function createWindow() {
 
 	try {
 		
-		let app = new App(4000);
-		let url = await app.initiaize();
-		console.log(`App listening at ${url}`);
+		const server = new App(5000, app.getPath('userData'));
+		const url = await server.initiaize();
+		console.log(`Server listening at ${url}`);
 
 		mainWindow = new BrowserWindow({ width: 900, height: 600 });
 		const startUrl = 'http://localhost:3000';

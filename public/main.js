@@ -14,9 +14,9 @@ let mainWindow;
 function createWindow() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            let app = new App_1.default(4000);
-            let url = yield app.initiaize();
-            console.log(`App listening at ${url}`);
+            const server = new App_1.default(5000, electron_1.app.getPath('userData'));
+            const url = yield server.initiaize();
+            console.log(`Server listening at ${url}`);
             mainWindow = new electron_1.BrowserWindow({ width: 900, height: 600 });
             const startUrl = 'http://localhost:3000';
             mainWindow.loadURL(startUrl);

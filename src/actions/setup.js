@@ -1,6 +1,5 @@
 import { resetLabels } from '../service/label';
-import * as ipc from '../common/ipc';
-import * as task from '../common/task';
+import { loadThreads } from '../service/thread';
 
 export const FETCH_INPROGRESS = 'FETCH_INPROGRESS';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
@@ -21,15 +20,12 @@ const fetchFailed = message => ({
 	payload: message
 });
 
-const fetch = (dispatch, apiAction, channel, entity) => {
+const fetch = (dispatch, apiAction, entity) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			dispatch(fetchInProgress(`Fetching ${entity}...`));
 			const response = await apiAction();
 			dispatch(fetchSuccess(`${entity} retrieved successfully.`));
-
-			// const result = await ipc.ipcSendToElectron(channel, response);
-			// dispatch(fetchSuccess(`${entity} stored successfully.`));
 
 			resolve(response);
 		} catch (error) {
@@ -41,6 +37,8 @@ const fetch = (dispatch, apiAction, channel, entity) => {
 
 export const initialize = () => {
 	return async dispatch => {
-		await fetch(dispatch, resetLabels, 'labels', 'Labels');
+		await fetch(dispatch, resetLabels, 'Labels');
+		await fetch(dispatch, () => loadThreads(new Date('2018/06/01')), 'Threads');
+
 	};
 };

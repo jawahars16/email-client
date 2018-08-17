@@ -9,12 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 class MainController {
-    constructor(mainService) {
+    constructor(mainService, app) {
         this.mainService = mainService;
+        app.post('/labels/reset', this.ResetLabels);
+        app.get('/labels', (req, res) => console.log('test'));
     }
     ResetLabels(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req);
+            console.log(req.body);
+            console.log(this);
+            // this.mainService.ResetLabels(req.body);
         });
     }
 }

@@ -1,4 +1,4 @@
-const { ipcRenderer, ipcMain } = window.require('electron');
+const { ipcRenderer } = window.require('electron');
 
 export function ipcSendToElectron(channel, data, timeout = 5000) {
 	return new Promise(function(resolve, reject) {
