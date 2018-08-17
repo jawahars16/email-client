@@ -40,7 +40,8 @@ const extractThreadDetail = threadResponse => {
 		from: recentMessage.payload.headers.find(h => h.name === 'From').value,
 		subject: recentMessage.payload.headers.find(h => h.name === 'Subject').value,
 		snippet: recentMessage.snippet,
-		date: recentMessage.payload.headers.find(h => h.name === 'Date').value
+		date: recentMessage.payload.headers.find(h => h.name === 'Date').value,
+		labels: threadResponse.labelIds
 	};
 };
 

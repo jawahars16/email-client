@@ -1,17 +1,15 @@
 class Label {
 	title: string;
-	id: String;
+	id: string;
 }
 
 class Thread {
-    subject: string;
-    from: string;
-    date: Date;
-    snippet: string;
-	id: String;
+	subject: string;
+	from: string;
+	date: Date;
+	snippet: string;
+	id: string;
+	labels: string[];
 }
 
-export {
-    Label,
-    Thread
-}
+export { Label, Thread };

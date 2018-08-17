@@ -7,6 +7,15 @@ export default class Repository<T> {
 		this.store = store;
 	}
 
+	public get(query): Promise<T[]> {
+		return new Promise((resolve, reject) => {
+			this.store.find(query, (error, documents: T[]) => {
+				if (error) reject(error);
+				else resolve(documents);
+			});
+		});
+	}
+
 	public addMultiple(documents: T[]): Promise<T[]> {
 		return Promise.all(documents.map(document => this.add(document)));
 	}
